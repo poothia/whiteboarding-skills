@@ -8,8 +8,8 @@ This repository contains two complementary skills that form an end-to-end whiteb
 
 | Skill | Purpose |
 |-------|---------|
-| **[Whiteboarding Champion](whiteboarding-champion/SKILL.md)** | Co-creates whiteboards using the Why / What / How framework. Guides discovery, maps pains to Red Hat products, and generates SVG output. |
-| **[Miro Import](miro-import/SKILL.md)** | Takes the SVG output (or any compatible SVG) and pushes it to a Miro board via the official Miro MCP server. Handles board creation, upload, verification, and incremental updates. |
+| **[Whiteboarding Champion](skills/whiteboarding-champion/SKILL.md)** | Co-creates whiteboards using the Why / What / How framework. Guides discovery, maps pains to Red Hat products, and generates SVG output. |
+| **[Miro Import](skills/miro-import/SKILL.md)** | Takes the SVG output (or any compatible SVG) and pushes it to a Miro board via the official Miro MCP server. Handles board creation, upload, verification, and incremental updates. |
 
 ## Workflow
 
@@ -45,8 +45,8 @@ Copy both skill folders into Cursor's skills directory:
 
 ```bash
 mkdir -p ~/.cursor/skills
-cp -r whiteboarding-skills/whiteboarding-champion ~/.cursor/skills/
-cp -r whiteboarding-skills/miro-import ~/.cursor/skills/
+cp -r whiteboarding-skills/skills/whiteboarding-champion ~/.cursor/skills/
+cp -r whiteboarding-skills/skills/miro-import ~/.cursor/skills/
 ```
 
 ### Step 3: Verify it works
@@ -100,7 +100,7 @@ Prompt the agent in Cursor:
 
 The **Whiteboarding Champion** skill will:
 1. Run a quick 2–3 round discovery (customer context, pains, current stack)
-2. Map pains to Red Hat products using the built-in [portfolio reference](whiteboarding-champion/redhat-portfolio.md)
+2. Map pains to Red Hat products using the built-in [portfolio reference](skills/whiteboarding-champion/redhat-portfolio.md)
 3. Present a 4-act story structure for approval
 4. Generate an SVG file in `whiteboard-output/` and a `.canvas.tsx` preview
 
@@ -137,18 +137,19 @@ whiteboarding-skills/
 │       ├── end-to-end-pipeline.jpg
 │       ├── miro-import.jpg
 │       └── whiteboarding-champion.jpg
-├── whiteboarding-champion/
-│   ├── SKILL.md              # Main skill definition & agent instructions
-│   ├── redhat-portfolio.md   # Product catalog, pain-to-product map, solution patterns
-│   └── board-templates.md    # Two complete board layout examples
-└── miro-import/
-    ├── SKILL.md              # Import skill definition & workflow
-    └── reference.md          # Miro MCP tool reference & troubleshooting
+└── skills/
+    ├── whiteboarding-champion/
+    │   ├── SKILL.md              # Main skill definition & agent instructions
+    │   ├── redhat-portfolio.md   # Product catalog, pain-to-product map, solution patterns
+    │   └── board-templates.md    # Two complete board layout examples
+    └── miro-import/
+        ├── SKILL.md              # Import skill definition & workflow
+        └── reference.md          # Miro MCP tool reference & troubleshooting
 ```
 
 ## Red Hat Product Coverage
 
-The skills include a comprehensive [pain-to-product map](whiteboarding-champion/redhat-portfolio.md) covering:
+The skills include a comprehensive [pain-to-product map](skills/whiteboarding-champion/redhat-portfolio.md) covering:
 
 - **OpenShift Container Platform** — Enterprise Kubernetes foundation
 - **Ansible Automation Platform** — Infrastructure & ops automation
@@ -174,7 +175,7 @@ The skills include a comprehensive [pain-to-product map](whiteboarding-champion/
 
 ## Board Templates
 
-Two ready-to-use templates are included in [board-templates.md](whiteboarding-champion/board-templates.md):
+Two ready-to-use templates are included in [board-templates.md](skills/whiteboarding-champion/board-templates.md):
 
 1. **Pain Chain to Adoption** (default) — Classic 4-act linear flow, ideal for executive and mixed audiences
 2. **Technical Deep-Dive** — Side-by-side before/after with Mermaid sequence diagrams and concrete task lists, ideal for platform engineers and architects

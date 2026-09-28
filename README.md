@@ -35,28 +35,54 @@ Every board follows a left-to-right narrative:
 
 Plus a **Discussion Zone** at the bottom for live customer engagement.
 
-## Installation
+## Getting Started
 
 ### Prerequisites
 
 - [Cursor](https://cursor.com) with Agent mode enabled
-- A Miro account (free or paid) — required only for the Miro Import skill
-- The [Miro MCP plugin](https://developers.miro.com/docs/miro-mcp) connected in Cursor (see setup below)
+- A Miro account (free or paid) — only needed when you want to push boards to Miro
 
-### Add the Skills to Cursor
-
-Clone this repository into your Cursor skills directory or your project workspace:
+### Step 1: Clone the repo
 
 ```bash
 git clone git@github.com:poothia/whiteboarding-skills.git
 ```
 
-The skills are automatically discovered by Cursor when placed under `~/.cursor/skills/` or referenced in your workspace configuration.
+### Step 2: Install the skills into Cursor
 
-### Miro MCP Setup (for Miro Import)
+Copy both skill folders into Cursor's skills directory:
 
-1. Open **Cursor Settings** → **MCP**
-2. Search for **Miro** in the marketplace and click **Install**, or add manually:
+```bash
+mkdir -p ~/.cursor/skills
+cp -r whiteboarding-skills/whiteboarding-champion ~/.cursor/skills/
+cp -r whiteboarding-skills/miro-import ~/.cursor/skills/
+```
+
+### Step 3: Verify it works
+
+Restart Cursor (or run **Developer: Reload Window** from the command palette), then open a new Agent chat and type:
+
+> *"Create a whiteboard for Acme Corp — they have config drift and failing audits"*
+
+If the agent starts asking discovery questions about the customer, the skills are loaded and working.
+
+## Miro Connection
+
+**You don't need to set anything up manually.** The Miro Import skill automatically detects whether the Miro MCP server is connected. If it isn't, the skill will walk you through the setup right inside the chat — just follow the prompts.
+
+To trigger it, simply ask:
+
+> *"Push this whiteboard to Miro"*
+
+The agent will handle the rest: installing the Miro MCP plugin, opening the OAuth login, and verifying the connection.
+
+### Manual Setup (if auto-setup fails)
+
+If the automatic setup doesn't work, you can configure the Miro MCP by hand:
+
+1. Open **Cursor Settings** (`Cmd+,` on Mac / `Ctrl+,` on Windows/Linux) → **MCP**
+2. Search for **Miro** in the marketplace and click **Install**
+3. If the marketplace search doesn't find it, click **Add MCP Server** and paste this config:
    ```json
    {
      "mcpServers": {
@@ -68,9 +94,10 @@ The skills are automatically discovered by Cursor when placed under `~/.cursor/s
      }
    }
    ```
-3. Click **Connect** and complete the Miro OAuth flow
-4. Select the correct **Miro team** (MCP is team-specific)
-5. Verify by asking the agent: *"Search my Miro boards"*
+4. Click **Connect** — a browser window opens with Miro's OAuth flow
+5. Log in to Miro and **select the team** where you want boards created (MCP is team-specific)
+6. Click **Allow** — you'll see "Authentication successful" and get redirected back to Cursor
+7. Verify by asking the agent: *"Search my Miro boards"* — if it returns results, you're good to go
 
 ## Usage
 
@@ -169,7 +196,3 @@ The agent will update `redhat-portfolio.md` with current product information, ad
 | SVG creation fails | Ensure `canvas_get_canvas_composer_skill` is called first; check SVG against the spec |
 | Board not found | MCP is team-specific — re-authenticate with the team that owns the board |
 | Rate limiting (429) | Batch content into fewer SVG payloads; check [Miro MCP usage limits](https://developers.miro.com/docs/mcp-usage-and-daily-limits) |
-
-## License
-
-This project is provided as-is for use by Red Hat adoption teams and Cursor users.

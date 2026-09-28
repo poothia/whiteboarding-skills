@@ -13,16 +13,7 @@ This repository contains two complementary skills that form an end-to-end whiteb
 
 ## Workflow
 
-```
-┌─────────────────────┐      ┌──────────────┐      ┌───────────────┐
-│  Discovery Chat     │ ──▶  │  SVG + Canvas│ ──▶  │  Miro Board   │
-│  (Champion skill)   │      │  Preview     │      │  (Import skill)│
-└─────────────────────┘      └──────────────┘      └───────────────┘
-
- 1. Quick discovery           2. Board generation     3. Push to Miro
-    (customer, pains,            (4-act story flow       (create board,
-     stack, audience)             as SVG + .canvas.tsx)    verify, share)
-```
+![End-to-end pipeline](docs/images/end-to-end-pipeline.jpg)
 
 ### The 4-Act Story Flow
 
@@ -113,6 +104,8 @@ The **Whiteboarding Champion** skill will:
 3. Present a 4-act story structure for approval
 4. Generate an SVG file in `whiteboard-output/` and a `.canvas.tsx` preview
 
+![Whiteboarding Champion workflow](docs/images/whiteboarding-champion.jpg)
+
 ### Push to Miro
 
 Once the SVG is ready:
@@ -126,6 +119,8 @@ The **Miro Import** skill will:
 4. Upload the SVG and verify all elements were created
 5. Return the board URL
 
+![Miro Import workflow](docs/images/miro-import.jpg)
+
 ### Update an Existing Board
 
 > *"Add a proof point to the ACS section on the Acme Bank board"*
@@ -137,6 +132,11 @@ The Miro Import skill supports incremental updates — it reads the current boar
 ```
 whiteboarding-skills/
 ├── README.md
+├── docs/
+│   └── images/
+│       ├── end-to-end-pipeline.jpg
+│       ├── miro-import.jpg
+│       └── whiteboarding-champion.jpg
 ├── whiteboarding-champion/
 │   ├── SKILL.md              # Main skill definition & agent instructions
 │   ├── redhat-portfolio.md   # Product catalog, pain-to-product map, solution patterns
